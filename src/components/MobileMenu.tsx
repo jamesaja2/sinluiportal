@@ -1,5 +1,7 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
+import home from '../assets/home.png';
+import announcement from '../assets/announcement.png';
 
 interface MobileMenuProps {
   currentTab: string;
@@ -28,9 +30,7 @@ const MobileMenu = ({ currentTab, onTabChange, isOpen, onToggle }: MobileMenuPro
             }}
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-                {/* Icon placeholder */}
-              </div>
+              <img src={home} alt="" className="w-6 h-6" />
               <span>Home</span>
             </div>
           </div>
@@ -42,9 +42,7 @@ const MobileMenu = ({ currentTab, onTabChange, isOpen, onToggle }: MobileMenuPro
             }}
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-                {/* Icon placeholder */}
-              </div>
+              <img src={announcement} alt="" className="w-6 h-6" />
               <span>Announcement</span>
             </div>
           </div>
