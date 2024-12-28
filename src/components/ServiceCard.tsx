@@ -15,9 +15,7 @@ const ServiceCard = ({ title, description, iconUrl, link }: ServiceCardProps) =>
       rel="noopener noreferrer" 
       className="app-card h-24 w-full block"
     >
-      <div className="icon-placeholder shrink-0">
-        <img src={iconUrl} alt={title} className="w-8 h-8" />
-      </div>
+      <img src={iconUrl} alt={title} className="w-8 h-8 shrink-0" />
       <div className="min-w-0">
         <h3 className="font-medium truncate">{title}</h3>
         <p className="text-sm text-gray-400 truncate">{description}</p>
