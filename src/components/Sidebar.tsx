@@ -1,5 +1,6 @@
 import React from 'react';
-import { Home, Bell } from 'lucide-react';
+import home from '../assets/home.png';
+import announcement from '../assets/announcement.png';
 
 interface SidebarProps {
   currentTab: string;
@@ -13,14 +14,14 @@ const Sidebar = ({ currentTab, onTabChange }: SidebarProps) => {
         className={`sidebar-item ${currentTab === 'home' ? 'active' : ''}`}
         onClick={() => onTabChange('home')}
       >
-        <Home className="w-5 h-5" />
+        <img src={home} alt="" className="w-5 h-5" />
         <span>Home</span>
       </div>
       <div 
         className={`sidebar-item ${currentTab === 'announcement' ? 'active' : ''}`}
         onClick={() => onTabChange('announcement')}
       >
-        <Bell className="w-5 h-5" />
+        <img src={announcement} alt="" className="w-5 h-5" />
         <span>Announcement</span>
       </div>
     </aside>
