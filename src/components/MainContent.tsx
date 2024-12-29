@@ -15,13 +15,13 @@ const services = [
   {
     title: 'Sinlui Learning Center',
     description: 'Akses e-book, materi, dan tugas',
-    link: 'https://stlouislc.net/',
+    link: 'https://stlouislc.net/my/',
     iconUrl: slc,
   },
   {
     title: 'SiLuisa',
     description: 'Cek biodata, nilai, peminjaman ruang...',
-    link: 'https://luisa.id/Login/',
+    link: 'https://www.luisa.id/login/google/redirect/',
     iconUrl: luisa,
   },
   {
@@ -45,7 +45,7 @@ const services = [
   {
     title: 'Atur 2FA akun anda!',
     description: 'Cek keamanan akun anda',
-    link: 'https://myaccount.google.com/u/1/signinoptions/twosv',
+    link: 'https://myaccount.google.com/signinoptions/twosv',
     iconUrl: twofa,
   },
   {
