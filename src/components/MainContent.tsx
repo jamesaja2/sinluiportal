@@ -10,6 +10,7 @@ import presensi from '../assets/presensi.png';
 import scbt from '../assets/scbt.png';
 import twofa from '../assets/2fa.png';
 import canva from '../assets/canva.png';
+import { features } from '../config/features';
 
 const services = [
   {
