@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import SinluiLogo from '../assets/sinlui-logo.svg';
 import MobileMenu from './MobileMenu';
+import UserMenu from './UserMenu';
+import { useAuth } from '../contexts/AuthContext';
 
 interface HeaderProps {
   currentTab: string;
@@ -9,6 +11,7 @@ interface HeaderProps {
 
 const Header = ({ currentTab, onTabChange }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <header className="bg-gradient-to-r from-[#2a2a2a] to-[#3a3a3a] border-b border-gray-700">
@@ -23,6 +26,7 @@ const Header = ({ currentTab, onTabChange }: HeaderProps) => {
             />
             <img src={SinluiLogo} alt="Sinlui Portal" className="h-8" />
           </div>
+          <UserMenu />
         </div>
       </div>
     </header>

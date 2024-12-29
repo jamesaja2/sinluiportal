@@ -2,6 +2,8 @@ import React from 'react';
 import ServiceCard from './ServiceCard';
 import AnnouncementSection from './AnnouncementSection';
 import CalendarSection from './CalendarSection';
+import { useAuth } from '../contexts/AuthContext';
+import { features } from '../config/features';
 import apps from '../assets/apps.png';
 import slc from '../assets/slc.png';
 import luisa from '../assets/luisa.png';
@@ -10,56 +12,81 @@ import presensi from '../assets/presensi.png';
 import scbt from '../assets/scbt.png';
 import twofa from '../assets/2fa.png';
 import canva from '../assets/canva.png';
-import { features } from '../config/features';
 
-const services = [
+const teacherServices = [
+  {
+    title: 'Sinlui Learning Center',
+    description: 'Upload materi dan tugas',
+    link: '#',
+    iconUrl: slc,
+  },
+  {
+    title: 'SiLuisa',
+    description: 'Input nilai, presensi, dan jadwal',
+    link: '#',
+    iconUrl: luisa,
+  },
+  // ... other teacher-specific services
+];
+
+const studentServices = [
   {
     title: 'Sinlui Learning Center',
     description: 'Akses e-book, materi, dan tugas',
-    link: 'https://stlouislc.net/my/',
+    link: '#',
     iconUrl: slc,
   },
   {
     title: 'SiLuisa',
     description: 'Cek biodata, nilai, peminjaman ruang...',
-    link: 'https://www.luisa.id/login/google/redirect/',
+    link: '#',
     iconUrl: luisa,
   },
+  // ... other student-specific services
+];
+
+const commonServices = [
   {
     title: 'Office 365',
     description: 'Akses layanan Office 365',
-    link: 'https://accounts.google.com/o/saml2/initsso?idpid=C01jrcord&spid=936554538791',
+    link: '#',
     iconUrl: office365,
-  },
-  {
-    title: 'e-Presensi',
-    description: 'Kehadiran di kelas',
-    link: 'https://absensi.stlouislc.net/',
-    iconUrl: presensi,
-  },
-  {
-    title: 'Sinlui Computer Based Test (SCBT)',
-    description: 'Akses ke soal penilaian',
-    link: 'sebs://smakstlouis1sby.sch.id/seb/config/PAS-Local.seb',
-    iconUrl: scbt,
   },
   {
     title: 'Atur 2FA akun anda!',
     description: 'Cek keamanan akun anda',
-    link: 'https://myaccount.google.com/signinoptions/twosv',
+    link: '#',
     iconUrl: twofa,
   },
   {
     title: 'Canva Education',
     description: 'Akses ke akun canva',
-    link: 'https://www.canva.com/login/sso/BAFM3FvydS8',
+    link: '#',
     iconUrl: canva,
   },
 ];
 
 const MainContent = () => {
+  const { user } = useAuth();
+
+  if (!user) return null;
+
+  const services = [
+    ...(user.role === 'teacher' ? teacherServices : studentServices),
+    ...commonServices,
+  ];
+
   return (
     <main className="flex-1 p-6 max-w-6xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-2xl font-semibold">
+          Hello, {user.name}
+        </h1>
+        <p className="text-gray-400">
+          {user.role === 'teacher' ? 'Teacher Portal' : 'Student Portal'}
+        </p>
+      </div>
+
       <section>
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <img src={apps} alt="" className="w-6 h-6" />
