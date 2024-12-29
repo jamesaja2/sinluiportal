@@ -1,6 +1,6 @@
 // Feature flags configuration
 export const features = {
-    showSidebar: false,
+    showSidebar: true,
     showAnnouncements: false,
     showCalendar: false
   };
