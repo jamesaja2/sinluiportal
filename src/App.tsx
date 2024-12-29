@@ -23,7 +23,7 @@ function App() {
         </div>
       </div>
       
-      <Footer logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png" /> {/* Add your logo URL here */}
+      <Footer logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png" logoWidth="70px" logoHeight="70px" />
     </div>
   );
 }
