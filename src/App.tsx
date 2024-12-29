@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import AnnouncementPage from './components/AnnouncementPage';
 import Footer from './components/Footer';
+import { features } from './config/features';
 
 function App() {
   const [currentTab, setCurrentTab] = useState('home');
@@ -13,7 +14,9 @@ function App() {
       <Header currentTab={currentTab} onTabChange={setCurrentTab} />
       
       <div className="flex flex-1">
-        <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
+        {features.showSidebar && (
+          <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
+        )}
         <div className="flex-1">
           {currentTab === 'home' ? (
             <MainContent />
@@ -29,3 +32,5 @@ function App() {
 }
 
 export default App;
+
+

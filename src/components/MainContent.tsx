@@ -58,7 +58,7 @@ const services = [
 
 const MainContent = () => {
   return (
-    <main className="flex-1 p-6 max-w-6xl mx-auto"> {/* Added max-width and center alignment */}
+    <main className="flex-1 p-6 max-w-6xl mx-auto">
       <section>
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <img src={apps} alt="" className="w-6 h-6" />
@@ -71,10 +71,16 @@ const MainContent = () => {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <AnnouncementSection className="lg:col-span-2" />
-        <CalendarSection />
-      </div>
+      {(features.showAnnouncements || features.showCalendar) && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          {features.showAnnouncements && (
+            <AnnouncementSection className="lg:col-span-2" />
+          )}
+          {features.showCalendar && (
+            <CalendarSection />
+          )}
+        </div>
+      )}
     </main>
   );
 };
