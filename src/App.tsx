@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAuth } from './contexts/AuthContext';
+import LoginPage from './components/LoginPage';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
-import AnnouncementPage from './components/AnnouncementPage';
 import Footer from './components/Footer';
-import { features } from './config/features';
 
 function App() {
-  const [currentTab, setCurrentTab] = useState('home');
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginPage />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header currentTab={currentTab} onTabChange={setCurrentTab} />
-      
-      <div className="flex flex-1">
-        {features.showSidebar && (
-          <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
-        )}
-        <div className="flex-1">
-          {currentTab === 'home' ? (
-            <MainContent />
-          ) : (
-            <AnnouncementPage />
-          )}
-        </div>
-      </div>
-      
-      <Footer logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png" logoWidth="70px" logoHeight="70px" />
+      <Header />
+      <MainContent />
+      <Footer />
     </div>
   );
 }
 
 export default App;
-
-
