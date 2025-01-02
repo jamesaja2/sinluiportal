@@ -70,7 +70,18 @@ const MainContent = () => {
             <ServiceCard key={index} {...service} />
           ))}
         </div>
-      </section>  
+      </section>
+
+      {(features.showAnnouncements || features.showCalendar) && ( 
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          {features.showAnnouncements && (
+            <AnnouncementSection className="lg:col-span-2" />
+          )}
+          {features.showCalendar && (
+            <CalendarSection />
+          )}
+        </div>
+      )}      
     </main>
   );
 };
