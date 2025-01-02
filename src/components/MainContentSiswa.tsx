@@ -23,7 +23,7 @@ const MainContentSiswa = () => {
       iconUrl: slc,
     },
     {
-      title: 'SiLuisa',
+      title: 'Luisa',
       description: 'Cek biodata, nilai, peminjaman ruang...',
       link: 'https://www.luisa.id/login/google/redirect/',
       iconUrl: luisa,

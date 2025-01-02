@@ -25,7 +25,7 @@ const MainContentGuru = () => {
     {
       title: 'SiLuisa',
       description: 'Input nilai dan manajemen kelas',
-      link: 'https://www.luisa.id/login/google/redirect/',
+      link: 'https://www.si.luisa.id/login/google/redirect/',
       iconUrl: luisa,
     },
     {
@@ -36,14 +36,14 @@ const MainContentGuru = () => {
     },
     {
       title: 'e-Presensi',
-      description: 'Manajemen kehadiran siswa',
+      description: 'Kehadiran di sekolah',
       link: 'https://absensi.stlouislc.net/',
       iconUrl: presensi,
     },
     {
-      title: 'Input Nilai',
-      description: 'Input dan manajemen nilai siswa',
-      link: '#',
+      title: 'Manager SCBT',
+      description: 'Akses ke SCBT Manager anda',
+      link: 'https://scbt.stlouislc.net/manager/',
       iconUrl: scbt,
     },
     {
