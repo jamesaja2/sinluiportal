@@ -11,6 +11,7 @@ import presensi from '../assets/presensi.png';
 import scbt from '../assets/scbt.png';
 import twofa from '../assets/2fa.png';
 import canva from '../assets/canva.png';
+import email from '../assets/email.png';
 
 const MainContentGuru = () => {
   const { user } = useAuth();
@@ -25,7 +26,7 @@ const MainContentGuru = () => {
     {
       title: 'SiLuisa',
       description: 'Input nilai dan manajemen kelas',
-      link: 'https://www.si.luisa.id/login/google/redirect/',
+      link: 'https://si.luisa.id/login',
       iconUrl: luisa,
     },
     {
@@ -58,6 +59,12 @@ const MainContentGuru = () => {
       link: 'https://www.canva.com/login/sso/BAFM3FvydS8',
       iconUrl: canva,
     },
+    {
+        title: 'Email',
+        description: 'Akses ke email anda',
+        link: 'https://mail.google.com/mail/signinoptions/',
+        iconUrl: email,
+      },
   ];
 
   return (

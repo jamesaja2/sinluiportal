@@ -11,6 +11,7 @@ import presensi from '../assets/presensi.png';
 import scbt from '../assets/scbt.png';
 import twofa from '../assets/2fa.png';
 import canva from '../assets/canva.png';
+import email from '../assets/email.png';
 
 const MainContentSiswa = () => {
   const { user } = useAuth();
@@ -58,6 +59,12 @@ const MainContentSiswa = () => {
       link: 'https://www.canva.com/login/sso/BAFM3FvydS8',
       iconUrl: canva,
     },
+    {
+        title: 'Email',
+        description: 'Akses ke email anda',
+        link: 'https://mail.google.com/mail/signinoptions/',
+        iconUrl: email,
+      },
   ];
 
   return (
