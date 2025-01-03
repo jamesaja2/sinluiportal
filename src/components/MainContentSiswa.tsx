@@ -67,28 +67,24 @@ const MainContentSiswa = () => {
       },
   ];
 
-  return (
-    <main className="flex-1 p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">Selamat Datang, {user?.name}</h1>
-      
-      <section>
-        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <img src={apps} alt="" className="w-6 h-6" />
-          Applications and Services
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
-          ))}
-        </div>
-      </section>
-
-      {features.showAnnouncements && features.showCalendar && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-          <AnnouncementSection className="lg:col-span-2" />
-          <CalendarSection />
-        </div>
-      )}
-    </main>
-  );
-};
+  const MainContentSiswa = () => {
+    const { user } = useAuth();
+  
+    return (
+      <MainLayout>
+        <main className="flex-1 p-6 max-w-6xl mx-auto">
+          <h1 className="text-2xl font-semibold mb-6">Selamat Datang, {user?.name}</h1>
+          <ServicesList services={services} />
+          
+          {features.showAnnouncements && features.showCalendar && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+              <AnnouncementSection className="lg:col-span-2" />
+              <CalendarSection />
+            </div>
+          )}
+        </main>
+      </MainLayout>
+    );
+  };
+  
+  export default MainContentSiswa;
