@@ -14,18 +14,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserInfo | null>(() => {
-    const savedUser = localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('user');
-    }
-  }, [user]);
+  const [user, setUser] = useState<UserInfo | null>(null);
 
   const determineRole = (email: string) => {
     if (email.endsWith('@s.smakstlouis1sby.sch.id')) return 'student';
@@ -43,15 +32,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         const role = determineRole(userInfo.data.email);
         
-        const userData = {
+        setUser({
           name: userInfo.data.name,
           email: userInfo.data.email,
           picture: userInfo.data.picture,
           role
-        };
-
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
+        });
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
@@ -63,7 +49,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
   };
 
   return (
