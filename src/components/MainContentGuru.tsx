@@ -83,12 +83,12 @@ const MainContentGuru = () => {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <AnnouncementSection className="lg:col-span-2" />
-        <CalendarSection />
-      </div>
+      {features.showAnnouncements && features.showCalendar && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          <AnnouncementSection className="lg:col-span-2" />
+          <CalendarSection />
+        </div>
+      )}
     </main>
   );
 };
-
-export default MainContentGuru;

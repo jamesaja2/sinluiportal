@@ -12,7 +12,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const { user } = useAuth();
   
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   return <>{children}</>;
@@ -27,6 +27,7 @@ const MainContent = () => {
       {user?.role === 'student' && <MainContentSiswa />}
       {user?.role === 'teacher' && <MainContentGuru />}
       <Footer logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png" logoWidth="70px" logoHeight="70px" />
+      
       
     </div>
   );
