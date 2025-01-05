@@ -25,6 +25,7 @@ declare const app: import("hono/hono-base").HonoBase<{
 				}[];
 				links: {
 					id: number;
+					lexorank: string;
 					title: string;
 					description: string;
 					url: string;
@@ -41,147 +42,44 @@ declare const app: import("hono/hono-base").HonoBase<{
 		};
 	};
 } & {
-	"/categories": {
-		$post: {
-			input: {
-				json: {
-					name: string;
-					lexorank?: string | undefined;
-				};
-			};
-			output: {
-				id: number;
-				name: string;
-				lexorank: string;
-				createdAt: string;
-				updatedAt: string;
-			};
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
-	"/categories/:id": {
-		$put: {
-			input: {
-				json: {
-					name: string;
-					lexorank?: string | undefined;
-				};
-			} & {
-				param: {
-					id: string;
-				};
-			};
-			output: {
-				id: number;
-				name: string;
-				lexorank: string;
-				createdAt: string;
-				updatedAt: string;
-			};
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
-	"/categories/:id": {
-		$delete: {
-			input: {
-				param: {
-					id: string;
-				};
-			};
-			output: {
-				id: number;
-				name: string;
-				lexorank: string;
-				createdAt: string;
-				updatedAt: string;
-			};
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
 	"/links": {
-		$post: {
-			input: {
-				json: {
-					title: string;
-					description: string;
-					url: string;
-					iconUrl: string;
-					categoryId: number;
-					lexorank?: string | undefined;
-				};
-			};
-			output: {
-				id: number;
-				lexorank: string;
-				createdAt: string;
-				updatedAt: string;
-				title: string;
-				description: string;
-				url: string;
-				iconUrl: string;
-				categoryId: number;
-			};
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
-	"/links/:id": {
 		$put: {
 			input: {
 				json: {
+					id: number;
+					name: string;
+					lexorank: string;
+					tags: {
+						name: string;
+					}[];
+					links: {
+						lexorank: string;
+						title: string;
+						description: string;
+						url: string;
+						iconUrl: string;
+						id?: number | undefined;
+					}[];
+				}[];
+			};
+			output: {
+				tags: {
+					name: string;
+				}[];
+				links: {
+					id: number;
 					lexorank: string;
 					title: string;
 					description: string;
 					url: string;
 					iconUrl: string;
-					categoryId: number;
-				};
-			} & {
-				param: {
-					id: string;
-				};
-			};
-			output: {
+				}[];
 				id: number;
+				name: string;
 				lexorank: string;
 				createdAt: string;
 				updatedAt: string;
-				title: string;
-				description: string;
-				url: string;
-				iconUrl: string;
-				categoryId: number;
-			};
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
-	"/links/:id": {
-		$delete: {
-			input: {
-				param: {
-					id: string;
-				};
-			};
-			output: {
-				id: number;
-				lexorank: string;
-				createdAt: string;
-				updatedAt: string;
-				title: string;
-				description: string;
-				url: string;
-				iconUrl: string;
-				categoryId: number;
-			};
+			}[];
 			outputFormat: "json";
 			status: import("hono/utils/http-status").ContentfulStatusCode;
 		};
