@@ -14,6 +14,7 @@ import MainContentGuru from "./components/MainContentGuru";
 import LoginPage from "./components/LoginPage";
 import Footer from "./components/Footer";
 import MainContentDynamic from "./components/MainContentDynamic";
+import { AdminPage } from "./components/AdminPage";
 
 // const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 //     children,
@@ -52,6 +53,7 @@ function App() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<MainContent />} />
+                        <Route path="/admin" element={<AdminPage />} />
                         {/* <Route path="/login" element={<LoginPage />} /> */}
                     </Routes>
                 </Router>

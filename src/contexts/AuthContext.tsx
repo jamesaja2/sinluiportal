@@ -1,8 +1,7 @@
-import React, { createContext, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useState, useMemo, useEffect } from 'react';
 import {
   CredentialResponse,
   googleLogout,
-  useGoogleLogin,
   useGoogleOneTapLogin,
 } from '@react-oauth/google';
 import { UserInfo, AuthContextType } from '../types/user';
@@ -32,6 +31,7 @@ export interface GoogleAccessToken {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  // Obtain the cached user from local storage
   const cachedUser = useMemo(() => {
     const cachedUserData = localStorage.getItem('cachedUser');
 
@@ -57,6 +57,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const [user, setUserState] = useState<UserInfo | null>(cachedUser);
+
+  // Lazily check whether the logged in user is valid and update the user state
+  useEffect(() => {
+    if (!cachedUser) {
+      return;
+    }
+
+    client.api.private.user
+      .$get({}, { init: { credentials: 'include' } })
+      .then(async (response) => {
+        if (response.ok) {
+          setUser(await response.json());
+        } else if (response.status === 401) {
+          // User is not valid, log them out
+          setUser(null);
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking user validity:', error);
+      });
+  }, [cachedUser]);
 
   const setUser = (user: UserInfo | null) => {
     setUserState(user);

@@ -10,13 +10,206 @@ export type JWTContent = {
 	familyName: string;
 	exp: number;
 };
-export type Variables = JwtVariables<JWTContent>;
+export type HonoVariables = JwtVariables<JWTContent>;
 declare const app: import("hono/hono-base").HonoBase<{
-	Variables: Variables;
-}, {
-	"/api/private/*": {};
+	Variables: HonoVariables;
+}, ((import("hono/types").BlankSchema | import("hono/types").MergeSchemaPath<{
+	"/*": {};
 } & {
-	"/api/private/user": {
+	"/links": {
+		$get: {
+			input: {};
+			output: {
+				tags: {
+					name: string;
+				}[];
+				links: {
+					id: number;
+					title: string;
+					description: string;
+					url: string;
+					iconUrl: string;
+				}[];
+				id: number;
+				name: string;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+			}[];
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/categories": {
+		$post: {
+			input: {
+				json: {
+					name: string;
+					lexorank?: string | undefined;
+				};
+			};
+			output: {
+				id: number;
+				name: string;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/categories/:id": {
+		$put: {
+			input: {
+				json: {
+					name: string;
+					lexorank?: string | undefined;
+				};
+			} & {
+				param: {
+					id: string;
+				};
+			};
+			output: {
+				id: number;
+				name: string;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/categories/:id": {
+		$delete: {
+			input: {
+				param: {
+					id: string;
+				};
+			};
+			output: {
+				id: number;
+				name: string;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/links": {
+		$post: {
+			input: {
+				json: {
+					title: string;
+					description: string;
+					url: string;
+					iconUrl: string;
+					categoryId: number;
+					lexorank?: string | undefined;
+				};
+			};
+			output: {
+				id: number;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+				title: string;
+				description: string;
+				url: string;
+				iconUrl: string;
+				categoryId: number;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/links/:id": {
+		$put: {
+			input: {
+				json: {
+					lexorank: string;
+					title: string;
+					description: string;
+					url: string;
+					iconUrl: string;
+					categoryId: number;
+				};
+			} & {
+				param: {
+					id: string;
+				};
+			};
+			output: {
+				id: number;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+				title: string;
+				description: string;
+				url: string;
+				iconUrl: string;
+				categoryId: number;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+} & {
+	"/links/:id": {
+		$delete: {
+			input: {
+				param: {
+					id: string;
+				};
+			};
+			output: {
+				id: number;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+				title: string;
+				description: string;
+				url: string;
+				iconUrl: string;
+				categoryId: number;
+			};
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+}, "/api/admin"> | import("hono/types").MergeSchemaPath<{
+	"/links": {
+		$get: {
+			input: {};
+			output: {
+				links: {
+					id: number;
+					title: string;
+					description: string;
+					url: string;
+					iconUrl: string;
+				}[];
+				id: number;
+				name: string;
+				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
+			}[];
+			outputFormat: "json";
+			status: import("hono/utils/http-status").ContentfulStatusCode;
+		};
+	};
+}, "/api/public"> | import("hono/types").MergeSchemaPath<{
+	"/user": {
 		$get: {
 			input: {};
 			output: {
@@ -33,7 +226,7 @@ declare const app: import("hono/hono-base").HonoBase<{
 		};
 	};
 } & {
-	"/api/private/links": {
+	"/links": {
 		$get: {
 			input: {};
 			output: {
@@ -45,38 +238,16 @@ declare const app: import("hono/hono-base").HonoBase<{
 					iconUrl: string;
 				}[];
 				id: number;
-				createdAt: string;
-				updatedAt: string;
 				name: string;
 				lexorank: string;
+				createdAt: string;
+				updatedAt: string;
 			}[];
 			outputFormat: "json";
 			status: import("hono/utils/http-status").ContentfulStatusCode;
 		};
 	};
-} & {
-	"/api/public/links": {
-		$get: {
-			input: {};
-			output: {
-				links: {
-					id: number;
-					title: string;
-					description: string;
-					url: string;
-					iconUrl: string;
-				}[];
-				id: number;
-				createdAt: string;
-				updatedAt: string;
-				name: string;
-				lexorank: string;
-			}[];
-			outputFormat: "json";
-			status: import("hono/utils/http-status").ContentfulStatusCode;
-		};
-	};
-} & {
+}, "/api/private">) & {
 	"/auth": {
 		$post: {
 			input: {
@@ -102,7 +273,7 @@ declare const app: import("hono/hono-base").HonoBase<{
 			status: import("hono/utils/http-status").ContentfulStatusCode;
 		};
 	};
-} & {
+}) & {
 	"/": {
 		$get: {
 			input: {};
