@@ -1,7 +1,5 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
-import AnnouncementSection from './AnnouncementSection';
-import CalendarSection from './CalendarSection';
 import { useAuth } from '../contexts/useAuth';
 import apps from '../assets/apps.png';
 import slc from '../assets/slc.png';
@@ -13,10 +11,10 @@ import twofa from '../assets/2fa.png';
 import canva from '../assets/canva.png';
 import email from '../assets/email.png';
 
-const MainContentGuru = () => {
+const MainContentDynamic = () => {
   const { user } = useAuth();
 
-  const services = [
+  const fallbackServices = [
     {
       title: 'Sinlui Learning Center',
       description: 'Manajemen materi dan tugas',
@@ -77,18 +75,14 @@ const MainContentGuru = () => {
           Applications and Services
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, index) => (
+          {fallbackServices.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <AnnouncementSection className="lg:col-span-2" />
-        <CalendarSection />
-      </div>
     </main>
   );
 };
 
-export default MainContentGuru;
+export default MainContentDynamic;

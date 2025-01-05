@@ -2,7 +2,7 @@ import React from 'react';
 import ServiceCard from './ServiceCard';
 import AnnouncementSection from './AnnouncementSection';
 import CalendarSection from './CalendarSection';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/useAuth';
 import apps from '../assets/apps.png';
 import slc from '../assets/slc.png';
 import luisa from '../assets/luisa.png';

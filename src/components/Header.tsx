@@ -1,10 +1,11 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/useAuth';
 import { LogOut } from 'lucide-react';
 import SinluiLogo from '../assets/sinlui-logo.svg';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Header = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, onGoogleLoginSuccess } = useAuth();
 
   return (
     <header className="bg-gradient-to-r from-[#2a2a2a] to-[#3a3a3a] border-b border-gray-700">
@@ -13,6 +14,13 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <img src={SinluiLogo} alt="Sinlui Portal" className="h-8" />
           </div>
+          {!user && (
+            <GoogleLogin
+              onSuccess={onGoogleLoginSuccess}
+              useOneTap
+              auto_select
+            />
+          )}
           {user && (
             <div className="flex items-center gap-4">
               <button
