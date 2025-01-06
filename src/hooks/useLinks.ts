@@ -17,7 +17,13 @@ export const useLinks = () => {
           ? `${import.meta.env.VITE_BACKEND_URL}/api/private/links`
           : `${import.meta.env.VITE_BACKEND_URL}/api/public/links`;
         
-        const response = await axios.get(endpoint);
+        const response = await axios.get(endpoint, {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
         
         if (response.data && response.data.length > 0) {
           setLinks(response.data);
