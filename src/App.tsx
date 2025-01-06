@@ -4,6 +4,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
+import AdminPanel from './components/admin/AdminPanel';
+import AdminRoute from './components/admin/AdminRoute';
 import Footer from './components/Footer';
 
 function App() {
@@ -13,7 +15,17 @@ function App() {
         <Router>
           <div className="min-h-screen flex flex-col">
             <Header />
-            <MainContent />
+            <Routes>
+              <Route path="/" element={<MainContent />} />
+              <Route 
+                path="/admin" 
+                element={
+                  <AdminRoute>
+                    <AdminPanel />
+                  </AdminRoute>
+                } 
+              />
+              </Routes>
             <Footer
                 logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png"
                 logoWidth="48px"

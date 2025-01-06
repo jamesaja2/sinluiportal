@@ -4,15 +4,19 @@ interface ServiceCardProps {
   title: string;
   description: string;
   iconUrl: string;
-  link: string;
+  url: string; // Changed from 'link' to 'url' to match the data structure
 }
 
-const ServiceCard = ({ title, description, iconUrl, link }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, iconUrl, url }: ServiceCardProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <a 
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer" 
+      href={url}
+      onClick={handleClick}
       className="app-card h-24 w-full block"
     >
       <img src={iconUrl} alt={title} className="w-8 h-8 shrink-0" />

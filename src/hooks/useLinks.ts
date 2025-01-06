@@ -10,37 +10,108 @@ export const useLinks = () => {
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
 
-  useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const endpoint = user 
-          ? `${import.meta.env.VITE_BACKEND_URL}/api/private/links`
-          : `${import.meta.env.VITE_BACKEND_URL}/api/public/links`;
-        
-        const response = await axios.get(endpoint, {
+  const fetchLinks = async () => {
+    try {
+      const endpoint = user 
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/private/links`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/public/links`;
+      
+      const response = await axios.get(endpoint, {
+        withCredentials: true,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.data && Array.isArray(response.data)) {
+        setLinks(response.data);
+      }
+      
+      setError(null);
+    } catch (err) {
+      console.error('Failed to fetch links:', err);
+      setError('Using offline data');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateLinks = async (newLinks: LinkCategories): Promise<void> => {
+    if (!user?.isAdmin) {
+      throw new Error('Unauthorized');
+    }
+
+    try {
+      // First, get the current data
+      const currentData = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/private/links`,
+        {
           withCredentials: true,
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
-        });
-        
-        if (response.data && response.data.length > 0) {
-          setLinks(response.data);
         }
-        
-        setError(null);
-      } catch (err) {
-        console.error('Failed to fetch links:', err);
-        setError('Using offline data');
-        // Fallback to static links (already set as initial state)
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      );
 
+      // Merge the current data with new changes
+      const mergedLinks = newLinks.map(category => {
+        const existingCategory = currentData.data.find((c: any) => c.id === category.id);
+        return {
+          id: category.id || existingCategory?.id,
+          name: category.name,
+          lexorank: category.lexorank,
+          createdAt: existingCategory?.createdAt || new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          links: category.links.map(link => {
+            const existingLink = existingCategory?.links.find((l: any) => l.id === link.id);
+            return {
+              id: link.id || existingLink?.id,
+              title: link.title,
+              description: link.description,
+              url: link.url,
+              iconUrl: link.iconUrl,
+              lexorank: link.lexorank || existingLink?.lexorank || 'a'
+            };
+          }),
+          tags: Array.isArray(category.tags) ? category.tags : []
+        };
+      });
+
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/links`,
+        mergedLinks,
+        {
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (response.data) {
+        setLinks(response.data);
+        setError(null);
+      } else {
+        throw new Error('Empty response from server');
+      }
+    } catch (err) {
+      console.error('Failed to update links:', err);
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        throw new Error(err.response.data.error.message || 'Unknown error');
+      } else if (err instanceof Error) {
+        throw err;
+      } else {
+        throw new Error('Failed to save changes');
+      }
+    }
+  };
+
+  useEffect(() => {
     fetchLinks();
   }, [user]);
 
-  return { links, isLoading, error };
+  return { links, isLoading, error, updateLinks };
 };
