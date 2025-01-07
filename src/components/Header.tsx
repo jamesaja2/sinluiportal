@@ -1,11 +1,16 @@
 import React from 'react';
 import { useAuth } from '../contexts/useAuth';
-import { LogOut } from 'lucide-react';
 import SinluiLogo from '../assets/sinlui-logo.svg';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { LogOut } from 'lucide-react'; // Menggunakan ikon dari lucide-react
 
 const Header = () => {
   const { user, logout, onGoogleLoginSuccess } = useAuth();
+
+  const handleLogout = () => {
+    googleLogout();
+    logout();
+  };
 
   return (
     <header className="bg-gradient-to-r from-[#2a2a2a] to-[#3a3a3a] border-b border-gray-700">
@@ -24,7 +29,7 @@ const Header = () => {
           {user && (
             <div className="flex items-center gap-4">
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 className="p-2 hover:bg-gray-700 rounded-full transition-colors"
               >
                 <LogOut className="w-5 h-5" />
