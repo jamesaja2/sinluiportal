@@ -6,6 +6,8 @@ import Header from './components/Header';
 import MainContent from './components/MainContent';
 import AdminPanel from './components/admin/AdminPanel';
 import AdminRoute from './components/admin/AdminRoute';
+import CreditsPage from './components/CreditsPage';
+import StatusPage from './components/StatusPage';
 import Footer from './components/Footer';
 
 function App() {
@@ -25,11 +27,13 @@ function App() {
                   </AdminRoute>
                 } 
               />
-              </Routes>
+              <Route path="/credits" element={<CreditsPage />} />
+              <Route path="/status" element={<StatusPage />} />
+            </Routes>
             <Footer
-                logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png"
-                logoWidth="48px"
-                logoHeight="48px"
+              logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png"
+              logoWidth="48px"
+              logoHeight="48px"
             />
           </div>
         </Router>
