@@ -107,6 +107,12 @@ const studentLinks: LinkCategories = [
         url: 'https://smakstlouis1sby.sch.id/',
         iconUrl: websklh,
       },
+      {
+        title: 'Canva Education',
+        description: 'Akses layanan Canva Edu',
+        url: 'https://www.canva.com/login/sso/BAFM3FvydS8',
+        iconUrl: canva,
+      },
     ]
   }
 ];
@@ -125,7 +131,7 @@ const staffLinks: LinkCategories = [
         iconUrl: slc,
       },
       {
-        title: 'SiLuisa',
+        title: 'siLuisa',
         description: 'Input nilai dan manajemen kelas',
         url: 'https://si.luisa.id/login',
         iconUrl: luisa,
@@ -138,7 +144,7 @@ const staffLinks: LinkCategories = [
       },
       {
         title: 'e-Presensi',
-        description: 'Manajemen kehadiran kelas',
+        description: 'Kehadiran di kelas',
         url: 'https://absensi.stlouislc.net/',
         iconUrl: presensi,
       },
