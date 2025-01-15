@@ -2,6 +2,7 @@ import React from 'react';
 import ServiceCard from './ServiceCard';
 import AnnouncementSection from './AnnouncementSection';
 import CalendarSection from './CalendarSection';
+import TemporaryAnnouncement from './TemporaryAnnouncement';
 import { useAuth } from '../contexts/useAuth';
 import { useLinks } from '../hooks/useLinks';
 import { features } from '../config/features';
@@ -22,6 +23,8 @@ const MainContent = () => {
           You are not logged in! Please log in to access more menu options!
         </div>
       )}
+
+      <TemporaryAnnouncement />
       
       <section>
         <div className="flex items-center justify-between mb-4">
