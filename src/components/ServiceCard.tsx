@@ -4,27 +4,35 @@ interface ServiceCardProps {
   title: string;
   description: string;
   iconUrl: string;
-  url: string; // Changed from 'link' to 'url' to match the data structure
+  url: string;
 }
 
 const ServiceCard = ({ title, description, iconUrl, url }: ServiceCardProps) => {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <a 
-      href={url}
+    <div 
       onClick={handleClick}
-      className="app-card h-24 w-full block"
+      onContextMenu={(e) => e.preventDefault()}
+      className="app-card h-24 w-full cursor-pointer"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      }}
     >
       <img src={iconUrl} alt={title} className="w-8 h-8 shrink-0" />
       <div className="min-w-0">
         <h3 className="font-medium truncate">{title}</h3>
         <p className="text-sm text-gray-400 truncate">{description}</p>
       </div>
-    </a>
+    </div>
   );
 };
 
