@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LinkCategories } from '../types/links';
-import { staticLinks } from '../data/staticLinks';
+import { getStaticLinks } from '../data/staticLinks';
 import { useAuth } from '../contexts/useAuth';
 
 export const useLinks = () => {
-  const [links, setLinks] = useState<LinkCategories>(staticLinks);
+  const { user } = useAuth();
+  const [links, setLinks] = useState<LinkCategories>(getStaticLinks(user?.sub));
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { user } = useAuth();
 
   const fetchLinks = async () => {
     try {
@@ -31,6 +31,7 @@ export const useLinks = () => {
       setError(null);
     } catch (err) {
       console.error('Failed to fetch links:', err);
+      setLinks(getStaticLinks(user?.sub));
       setError('Using offline data');
     } finally {
       setIsLoading(false);

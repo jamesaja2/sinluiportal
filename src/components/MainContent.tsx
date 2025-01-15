@@ -4,6 +4,7 @@ import AnnouncementSection from './AnnouncementSection';
 import CalendarSection from './CalendarSection';
 import { useAuth } from '../contexts/useAuth';
 import { useLinks } from '../hooks/useLinks';
+import { features } from '../config/features';
 import apps from '../assets/apps.png';
 
 const MainContent = () => {
@@ -12,10 +13,14 @@ const MainContent = () => {
 
   return (
     <main className="flex-1 p-6 max-w-6xl mx-auto">
-      {user && (
+      {user ? (
         <h1 className="text-2xl font-semibold mb-6">
           Selamat Datang, {user.name}
         </h1>
+      ) : (
+        <div className="bg-blue-500/10 border border-blue-500 text-blue-500 p-4 rounded-lg mb-6">
+          You are not logged in! Please log in to access more menu options!
+        </div>
       )}
       
       <section>
@@ -46,10 +51,16 @@ const MainContent = () => {
         )}
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        <AnnouncementSection className="lg:col-span-2" />
-        <CalendarSection />
-      </div>
+      {(features.showAnnouncements || features.showCalendar) && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          {features.showAnnouncements && (
+            <AnnouncementSection className="lg:col-span-2" />
+          )}
+          {features.showCalendar && (
+            <CalendarSection />
+          )}
+        </div>
+      )}
     </main>
   );
 };
