@@ -1,5 +1,5 @@
 export interface Link {
-    id?: number;
+    id?: number | string;
     title: string;
     description: string;
     url: string;
@@ -8,7 +8,7 @@ export interface Link {
   }
   
   export interface LinkCategory {
-    id?: number;
+    id?: number | string;
     name: string;
     lexorank: string;
     links: Link[];
