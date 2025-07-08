@@ -17,7 +17,7 @@ const ServiceCard = ({ title, description, iconUrl, url }: ServiceCardProps) => 
     <div 
       onClick={handleClick}
       onContextMenu={(e) => e.preventDefault()}
-      className="app-card h-24 w-full cursor-pointer"
+      className="app-card"
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {

@@ -12,7 +12,7 @@ import websklh from '../assets/logo.png'
 // Public links (not logged in)
 const publicLinks: LinkCategories = [
   {
-    id: 1,
+    id: 'public-1',
     name: "Applications and Services",
     lexorank: "a",
     links: [
@@ -55,7 +55,7 @@ const publicLinks: LinkCategories = [
 // Student links (@s.smakstlouis1sby.sch.id)
 const studentLinks: LinkCategories = [
   {
-    id: 1,
+    id: 'student-1',
     name: "Applications and Services",
     lexorank: "a",
     links: [
@@ -120,7 +120,7 @@ const studentLinks: LinkCategories = [
 // Staff links (@smakstlouis1sby.sch.id)
 const staffLinks: LinkCategories = [
   {
-    id: 1,
+    id: 'staff-1',
     name: "Applications and Services",
     lexorank: "a",
     links: [
