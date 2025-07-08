@@ -16,10 +16,10 @@ const StatusPage = () => {
     const checkEndpoints = async () => {
       const baseUrl = import.meta.env.VITE_BACKEND_URL;
       const endpointsToCheck = [
-        { name: 'User API', method: 'GET', path: '/api/private/user' },
-        { name: 'User API', method: 'PUT', path: '/api/private/user' },
-        { name: 'Admin API', method: 'GET', path: '/api/private/admin' },
-        { name: 'Admin API', method: 'PUT', path: '/api/private/admin' },
+        { name: 'User Profile API', method: 'GET', path: '/api/private/user' },
+        { name: 'User Links API', method: 'GET', path: '/api/private/links' },
+        { name: 'OAuth 2.0', method: 'GET', path: '/oauth/status' },
+        { name: 'Links Admin API', method: 'PUT', path: '/api/admin/links' },
       ];
 
       const statuses = await Promise.all(
