@@ -13,7 +13,7 @@ const MainContent = () => {
   const { links, isLoading, error } = useLinks();
 
   return (
-    <main className="flex-1 p-6 max-w-6xl mx-auto">
+    <main className="flex-1 p-6 w-full max-w-6xl mx-auto min-h-screen">
       {user ? (
         <h1 className="text-2xl font-semibold mb-6">
           Selamat Datang, {user.name}
