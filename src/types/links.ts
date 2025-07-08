@@ -4,6 +4,7 @@ export interface Link {
     description: string;
     url: string;
     iconUrl: string;
+    lexorank?: string;
   }
   
   export interface LinkCategory {
@@ -11,6 +12,7 @@ export interface Link {
     name: string;
     lexorank: string;
     links: Link[];
+    tags?: { name: string }[];
     createdAt?: string;
     updatedAt?: string;
   }
