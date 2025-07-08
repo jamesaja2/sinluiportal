@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/useAuth';
 
 export const useLinks = () => {
   const { user } = useAuth();
-  const [links, setLinks] = useState<LinkCategories>(getStaticLinks(user?.sub));
+  const [links, setLinks] = useState<LinkCategories>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,18 +25,34 @@ export const useLinks = () => {
       });
       
       if (response.data && Array.isArray(response.data)) {
-        setLinks(response.data);
+        // Ensure we have proper structure and fallback to static data if needed
+        const backendData = response.data;
+        if (backendData.length > 0 && backendData[0].links && backendData[0].links.length > 0) {
+          setLinks(backendData);
+        } else {
+          // Backend data is empty or malformed, use static data
+          setLinks(getStaticLinks(user?.sub));
+          setError('Using offline data - backend data incomplete');
+        }
+      } else {
+        // No valid data from backend, use static data
+        setLinks(getStaticLinks(user?.sub));
+        setError('Using offline data - invalid backend response');
       }
       
-      setError(null);
     } catch (err) {
       console.error('Failed to fetch links:', err);
       setLinks(getStaticLinks(user?.sub));
-      setError('Using offline data');
+      setError('Using offline data - backend unavailable');
     } finally {
       setIsLoading(false);
     }
   };
+
+  // Initialize with static data immediately
+  useEffect(() => {
+    setLinks(getStaticLinks(user?.sub));
+  }, [user?.sub]);
 
   const updateLinks = async (newLinks: LinkCategories): Promise<void> => {
     if (!user?.isAdmin) {

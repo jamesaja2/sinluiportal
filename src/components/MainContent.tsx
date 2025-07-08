@@ -42,11 +42,17 @@ const MainContent = () => {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
           </div>
         ) : (
-          links.map(category => (
-            <div key={category.id || category.name} className="mb-8">
+          links.map((category, categoryIndex) => (
+            <div key={category.id || categoryIndex} className="mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {category.links.map((link, index) => (
-                  <ServiceCard key={index} {...link} />
+                  <ServiceCard 
+                    key={link.id || index} 
+                    title={link.title}
+                    description={link.description}
+                    iconUrl={link.iconUrl}
+                    url={link.url}
+                  />
                 ))}
               </div>
             </div>
