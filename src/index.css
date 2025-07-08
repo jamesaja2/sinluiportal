@@ -19,6 +19,6 @@ body {
 }
 
 .app-card {
-  @apply flex items-center gap-4 p-4 bg-[#2a2a2a] rounded-lg hover:bg-[#3a3a3a] transition-all cursor-pointer border border-transparent hover:border-gray-700 min-h-[96px] w-full;
+  @apply flex items-center gap-4 p-4 bg-[#2a2a2a] rounded-lg hover:bg-[#3a3a3a] transition-all cursor-pointer border border-transparent hover:border-gray-700 h-24 w-full;
 }
 
