@@ -1,15 +1,16 @@
 import { useEffect, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function OAuthRedirectHandler() {
-  const [params] = useSearchParams();
-  const redirectTo = params.get("redirect");
   const auth = useContext(AuthContext);
 
+  const rawUrl = typeof window !== "undefined" ? window.location.href : "";
+  const redirectEncoded = rawUrl.split("redirect=")[1];
+  const redirectTo = decodeURIComponent(redirectEncoded ?? "/");
+
   useEffect(() => {
-    if (typeof window === "undefined") return; // 🛡️ prevent SSR error
-    if (!auth || !auth.onGoogleLoginSuccess || !redirectTo) return;
+    if (typeof window === "undefined") return;
+    if (!auth?.onGoogleLoginSuccess || !redirectTo) return;
 
     const token = window.google?.accounts?.id?.getCredential?.();
     if (!token) return;
@@ -23,9 +24,5 @@ export default function OAuthRedirectHandler() {
     return () => clearTimeout(timer);
   }, [auth, redirectTo]);
 
-  return (
-    <div className="text-white p-4">
-      Logging in via OAuth2 redirect...
-    </div>
-  );
+  return <div className="text-white p-4">Logging in via OAuth2 redirect...</div>;
 }
