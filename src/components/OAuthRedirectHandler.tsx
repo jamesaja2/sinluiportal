@@ -8,15 +8,14 @@ export default function OAuthRedirectHandler() {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    // Ambil token dari One Tap jika sudah login otomatis
+    if (typeof window === "undefined") return; // 🛡️ prevent SSR error
+    if (!auth || !auth.onGoogleLoginSuccess || !redirectTo) return;
+
     const token = window.google?.accounts?.id?.getCredential?.();
+    if (!token) return;
 
-    if (!token || !auth?.onGoogleLoginSuccess || !redirectTo) return;
-
-    // Simulasikan struktur response CredentialResponse
     auth.onGoogleLoginSuccess({ credential: token, select_by: "user" });
 
-    // Setelah beberapa saat, redirect
     const timer = setTimeout(() => {
       window.location.href = redirectTo;
     }, 1500);
@@ -24,5 +23,9 @@ export default function OAuthRedirectHandler() {
     return () => clearTimeout(timer);
   }, [auth, redirectTo]);
 
-  return <p>Logging in via OAuth2 redirect…</p>;
+  return (
+    <div className="text-white p-4">
+      Logging in via OAuth2 redirect...
+    </div>
+  );
 }
