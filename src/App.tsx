@@ -30,6 +30,7 @@ function App() {
               />
               <Route path="/credits" element={<CreditsPage />} />
               <Route path="/status" element={<StatusPage />} />
+              <Route path="/auth/authorize-redirect" element={<OAuthRedirectHandler />} />
             </Routes>
             <Footer
               logoUrl="https://smakstlouis1sby.sch.id/storage/2020/03/buat-web-1.png"
@@ -37,7 +38,6 @@ function App() {
               logoHeight="48px"
             />
           </div>
-          <Route path="/auth/authorize-redirect" element={<OAuthRedirectHandler />} />
         </Router>
       </AuthProvider>
     </GoogleOAuthProvider>
