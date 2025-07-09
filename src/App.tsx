@@ -9,6 +9,7 @@ import AdminRoute from './components/admin/AdminRoute';
 import CreditsPage from './components/CreditsPage';
 import StatusPage from './components/StatusPage';
 import Footer from './components/Footer';
+import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 
 function App() {
   return (
