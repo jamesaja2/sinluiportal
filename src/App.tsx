@@ -9,10 +9,11 @@ import AdminRoute from './components/admin/AdminRoute';
 import CreditsPage from './components/CreditsPage';
 import StatusPage from './components/StatusPage';
 import Footer from './components/Footer';
+import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId="496229497503-e3jpd34e2p7lde03jl20tehsiu0aeosj.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="955771670888-44ojt33njuvk3bqev0md2ja626n7nq7v.apps.googleusercontent.com">
       <AuthProvider>
         <Router>
           <div className="min-h-screen flex flex-col">
@@ -36,6 +37,7 @@ function App() {
               logoHeight="48px"
             />
           </div>
+          <Route path="/auth/authorize-redirect" element={<OAuthRedirectHandler />} />
         </Router>
       </AuthProvider>
     </GoogleOAuthProvider>
