@@ -13,7 +13,7 @@ import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId="955771670888-44ojt33njuvk3bqev0md2ja626n7nq7v.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <AuthProvider>
         <Router>
           <div className="min-h-screen flex flex-col">
