@@ -12,7 +12,7 @@ import websklh from '../assets/logo.png'
 // Public links (not logged in)
 const publicLinks: LinkCategories = [
   {
-    id: 'public-1',
+    id: 1,
     name: "Applications and Services",
     lexorank: "a",
     links: [
@@ -55,14 +55,14 @@ const publicLinks: LinkCategories = [
 // Student links (@s.smakstlouis1sby.sch.id)
 const studentLinks: LinkCategories = [
   {
-    id: 'student-1',
+    id: 1,
     name: "Applications and Services",
     lexorank: "a",
     links: [
       {
         title: 'Sinlui Learning Center',
         description: 'Akses e-book, materi, dan tugas',
-        url: 'https://stlouislc.net/my/',
+        url: 'https://stlouislc.net/local/sso/index.php',
         iconUrl: slc,
       },
       {
@@ -120,14 +120,14 @@ const studentLinks: LinkCategories = [
 // Staff links (@smakstlouis1sby.sch.id)
 const staffLinks: LinkCategories = [
   {
-    id: 'staff-1',
+    id: 1,
     name: "Applications and Services",
     lexorank: "a",
     links: [
       {
         title: 'Sinlui Learning Center',
         description: 'Manajemen materi dan tugas',
-        url: 'https://stlouislc.net/my/',
+        url: 'https://stlouislc.net/local/sso/index.php',
         iconUrl: slc,
       },
       {
