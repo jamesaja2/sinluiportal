@@ -62,7 +62,7 @@ const studentLinks: LinkCategories = [
       {
         title: 'Sinlui Learning Center',
         description: 'Akses e-book, materi, dan tugas',
-        url: 'https://stlouislc.net/my/',
+        url: 'https://stlouislc.net/local/sso/index.php',
         iconUrl: slc,
       },
       {
@@ -127,7 +127,7 @@ const staffLinks: LinkCategories = [
       {
         title: 'Sinlui Learning Center',
         description: 'Manajemen materi dan tugas',
-        url: 'https://stlouislc.net/my/',
+        url: 'https://stlouislc.net/local/sso/index.php',
         iconUrl: slc,
       },
       {
