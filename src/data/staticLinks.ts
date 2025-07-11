@@ -20,7 +20,7 @@ const publicLinks: LinkCategories = [
       {
         title: 'Sinlui Learning Center',
         description: 'Portal pembelajaran digital',
-        url: 'https://stlouislc.net/my/',
+        url: 'https://stlouislc.net/local/sso/index.php',
         iconUrl: slc,
       },
       {

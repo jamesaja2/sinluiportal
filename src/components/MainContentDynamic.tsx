@@ -18,7 +18,7 @@ const MainContentDynamic = () => {
     {
       title: 'Sinlui Learning Center',
       description: 'Manajemen materi dan tugas',
-      link: 'https://stlouislc.net/my/',
+      link: 'https://stlouislc.net/local/sso/index.php'
       iconUrl: slc,
     },
     {
